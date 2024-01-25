@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 function Square({ value, onSquareClick }) {
   return (
     <button
@@ -10,10 +10,9 @@ function Square({ value, onSquareClick }) {
     </button>
   );
 }
-export default function Board() {
-  const [squares, setSquares] = useState(Array(9).fill(null));
-  const [isXTurn, setIsXTurn] = useState(true);
+export default function Board({ squares, isXTurn, setIsXTurn }) {
   function handleClick(i) {
+    if (squares[i]) return;
     if (isXTurn) {
       squares[i] = "X";
     } else {
@@ -21,6 +20,7 @@ export default function Board() {
     }
     setIsXTurn(!isXTurn);
   }
+
   return (
     <>
       <div>
